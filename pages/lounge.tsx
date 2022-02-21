@@ -4,6 +4,7 @@ import type { PackMetadataWithBalance } from "@3rdweb/sdk";
 import { useEffect, useState } from "react";
 import { packAddress } from "../lib/contractAddresses";
 import NFT from "../components/nft";
+import OpenButton from "../components/open-button";
 
 export function getStaticProps() {
   return {
@@ -14,23 +15,34 @@ export function getStaticProps() {
 }
 
 export default function Lounge() {
-  const { address } = useWeb3()
+  const { address, provider } = useWeb3();
+  const signer = provider?.getSigner()
   const [loading, setLoading] = useState(false);
   const [packNfts, setPackNfts] = useState<PackMetadataWithBalance[]>([]);
 
   const sdk = new ThirdwebSDK("https://winter-icy-sun.matic-testnet.quiknode.pro/f36aa318f8f806e4e15a58ab4a1b6cb9f9e9d9b9/")
   const packModule = sdk.getPackModule(packAddress);
 
+  async function getNfts() {
+    const fetchedPackNfts = await packModule.getOwned(address);
+    console.log(fetchedPackNfts);
+    setPackNfts(fetchedPackNfts);
+  }
+
   async function getNftsWithLoading() {
-    setLoading(true)
+    setLoading(true);
     try {
-      const fetchedPackNfts = await packModule.getOwned(address)
-      console.log(fetchedPackNfts)
-      setPackNfts(fetchedPackNfts)
+      await getNfts()
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
+
+  useEffect(() => {
+    if (signer) {
+      sdk.setProviderOrSigner(signer)
+    }
+  }, [signer])
 
   useEffect(() => {
     if (address) {
@@ -67,6 +79,7 @@ export default function Lounge() {
             <div className="border border-blue-500 rounded-lg p-4">
               <NFT metadata={packNfts[0].metadata} />
               <p className="text-gray-800">Balance: {packNfts[0].ownedByAddress.toString()}</p>
+              <OpenButton packModule={packModule} afterOpen={getNfts} />
             </div>
           </div>
         </div>
