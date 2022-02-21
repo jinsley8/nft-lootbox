@@ -1,10 +1,14 @@
-import quizQuestions from "../../lib/questions";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { ethers, BigNumber } from "ethers";
+import { ThirdwebSDK } from "@3rdweb/sdk";
+import quizQuestions from "../../lib/questions";
+import { packAddress } from "../../lib/contractAddresses";
 
 export type CheckAnswerPayload = {
   address: string;
   questionIndex: number;
   answerIndex: number;
+  message: string;
   signedMessage: string;
 };
 
@@ -50,6 +54,18 @@ export default async function Open(
 
   const body = req.body as CheckAnswerPayload;
 
+  // get address the signed message
+  let address = ""
+  try {
+    address = ethers.utils.verifyMessage(body.message, body.signedMessage)
+  } catch (err) {
+    res.status(400).json({
+      kind: "error",
+      error: `Unable to verify message: ${err}`,
+    });
+    return;
+  }
+
   // Validate the question index is valid
   if (body.questionIndex >= quizQuestions.length) {
     res.status(400).json({
@@ -71,8 +87,21 @@ export default async function Open(
   }
 
   // If we get here then the answer was correct
+  // Initialize the Thirdweb SDK using the private key that owns the wallet
+  const sdk = new ThirdwebSDK(
+    new ethers.Wallet(
+      process.env.WALLET_PRIVATE_KEY as string,
+      // Using Polygon Mumbai network
+      ethers.getDefaultProvider("https://winter-icy-sun.matic-testnet.quiknode.pro/f36aa318f8f806e4e15a58ab4a1b6cb9f9e9d9b9/")
+    ),
+  );
 
-  // TODO: send the reward!
+  // Transfer a copy of the pack to the user
+  console.log(`Transferring a pack to ${address}...`);
+  const packModule = sdk.getPackModule(packAddress);
+  const packTokenId = '0';
+  // This is async
+  packModule.transfer(address, packTokenId, BigNumber.from(1));
 
   res.status(200).json({
     kind: "correct",

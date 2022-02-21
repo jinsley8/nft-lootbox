@@ -63,6 +63,7 @@ export default function QuizQuestion({
         address,
         questionIndex,
         answerIndex,
+        message,
         signedMessage,
       };
 
