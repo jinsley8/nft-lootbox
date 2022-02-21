@@ -1,6 +1,6 @@
 # NFT Lootbox
 
-Mint an NFT lootbox to reveal a random NFT when opened.
+Mint an NFT lootbox to reveal a random NFT when opened. Using the power of [thirdweb](https://thirdweb.com/) to generate NFT bundles and distribute them as lootbox packs.
 
 ## Next.js + Tailwind CSS Example
 
