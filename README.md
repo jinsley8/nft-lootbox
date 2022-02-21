@@ -1,6 +1,8 @@
-# NFT Lootbox
+# NFT Lootbox Quiz
 
-Mint an NFT lootbox to reveal a random NFT when opened. Using the power of [thirdweb](https://thirdweb.com/) to generate NFT bundles and distribute them as lootbox packs.
+Answer quiz questions correctly to receive a lootbox NFT pack that can be opened to reveal a random NFT from the collection.
+
+Using the power of [thirdweb](https://thirdweb.com/) to generate NFT bundles and distribute them as lootbox packs.
 
 ## Next.js + Tailwind CSS Example
 
