@@ -7,40 +7,36 @@ export type Question = {
 
 const quizQuestions: Question[] = [
   {
-    questionText: "What do the initials DB in Aston Martin DB11 stand for?",
+    questionText: "Which one of these Caribbean countries is not on an island?",
     image:
-      "https://images.unsplash.com/photo-1642201855395-1c8b44e6e42b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+      "https://unsplash.com/photos/ppMxyOhPtd8/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjQ1NDEyNTU4&force=true&w=640",
     answers: [
-      "Trick question: nothing!",
-      "David Brown",
-      "Drive Better",
-      "Diane Blue",
+      "Dominican Republic",
+      "Costa Rica",
+      "Jamaica",
+      "Cuba",
     ],
     correctAnswerIndex: 1,
   },
   {
-    questionText: "Which car brand is this logo for?",
-    image: "https://www.carlogos.org/logo/Lexus-symbol-640x480.jpg",
-    answers: ["Lamborghini", "Lada", "Lotus", "Lexus"],
+    questionText: "Which of these mountains is in North America?",
+    image: "https://unsplash.com/photos/9wg5jCEPBsw/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8Mnx8bW91bnRhaW58ZW58MHx8fHwxNjQ1NDExMjYz&force=true&w=640",
+    answers: ["Mount Everest", "Kilimanjaro", "Aconcagua", "Denali"],
     correctAnswerIndex: 3,
   },
   {
-    questionText: "Where in the UK is the MINI plant?",
+    questionText: "Which of these deserts in the hottest?",
     image:
-      "https://images.unsplash.com/photo-1591439346018-9d5df732ab7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80",
-    answers: ["Oxford", "Cambridge", "London", "Edinburgh"],
+      "https://unsplash.com/photos/L75D18aVal8/download?force=true&w=640",
+    answers: ["Lut Desert", "Sahara Desert", "Mojave Desert", "Atacama Desert"],
     correctAnswerIndex: 0,
   },
   {
     questionText:
-      "Which was the first James Bond film to include an Aston Martin?",
-    answers: ["Dr No", "From Russia with Love", "Goldfinger", "Thunderball"],
+      "Which rainforest is the most biodiverse in the world?",
+      image: "https://unsplash.com/photos/qLW70Aoo8BE/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjQ1NDEzMTkx&force=true&w=640",
+    answers: ["Daintree Rainforest, Australia", "Tongass National Forest, Alaska", "Amazon Rainforest, South America", "Congo Rainforest, Africa"],
     correctAnswerIndex: 2,
-  },
-  {
-    questionText: "What color were all Ferraris originally?",
-    answers: ["Yellow", "White", "Blue", "Red"],
-    correctAnswerIndex: 3,
   },
 ];
 

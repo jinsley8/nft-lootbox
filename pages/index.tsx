@@ -4,7 +4,7 @@ import quizQuestions from "../lib/questions";
 export function getStaticProps() {
   return {
     props: {
-      title: "My Quiz!",
+      title: "Landscapes Quiz!",
     },
   };
 }

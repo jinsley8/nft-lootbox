@@ -1,5 +1,4 @@
 import React from "react";
-import Footer from "./footer";
 import Navbar from "./navbar";
 
 type Props = {
@@ -19,7 +18,6 @@ export default function Layout({
           {children}
         </div>
       </main>
-      <Footer />
     </>
   );
 }

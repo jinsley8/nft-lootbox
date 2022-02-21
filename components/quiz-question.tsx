@@ -121,7 +121,7 @@ export default function QuizQuestion({
               {questionText}
             </label>
             {image ? (
-              <img src={image} className="object-cover h-48 w-96" alt="" />
+              <img src={image} className="object-cover h-48 w-96 rounded-lg" alt="" />
             ) : null}
           </div>
           <fieldset className="mt-4">
