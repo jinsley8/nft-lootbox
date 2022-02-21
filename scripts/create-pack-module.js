@@ -6,7 +6,7 @@ async function main() {
   console.log('Deploying pack module...');
 
   const packModule = await app.deployPackModule({
-    name: 'Lootbox Pack',
+    name: 'NFT Lootbox Pack',
     sellerFeeBasisPoints: 0,
   });
 
