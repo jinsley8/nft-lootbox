@@ -2,8 +2,10 @@ import quizQuestions from "../../lib/questions";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export type CheckAnswerPayload = {
+  address: string;
   questionIndex: number;
   answerIndex: number;
+  signedMessage: string;
 };
 
 type ErrorResponse = {

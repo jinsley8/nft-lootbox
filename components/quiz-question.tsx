@@ -1,6 +1,7 @@
 import axios from "axios";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
+import { useWeb3 } from "@3rdweb/hooks"
 import {
   CheckAnswerPayload,
   CheckAnswerResponse,
@@ -35,6 +36,12 @@ export default function QuizQuestion({
     undefined
   );
 
+  const { address, provider } = useWeb3()
+
+  if (!address) {
+    return <p>Please connect your wallet to take the quiz!</p>
+  }
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
@@ -44,10 +51,19 @@ export default function QuizQuestion({
         answerIndex !== undefined,
         "Answer index is required to submit"
       );
+      invariant(
+        provider !== undefined,
+        "Provider must be defined to submit an answer"
+      );
+
+      const message = "Please sign this message to confirm your identity and submit the answer. This won't cost any gas!";
+      const signedMessage = await provider.getSigner().signMessage(message);
 
       const payload: CheckAnswerPayload = {
+        address,
         questionIndex,
         answerIndex,
+        signedMessage,
       };
 
       const checkResponse = await axios.post("/api/check-answer", payload);
